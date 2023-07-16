@@ -51,10 +51,20 @@ export const rejectPromise = async (throwIt: boolean): Promise<boolean> => {
 
     // Here, if you call foo, the returned promise will always fulfill with undefined, without waiting.
     // Since we don't await or return the result of waitAndMaybeReject(), we don't react to it in any way. Code like this is usually a mistake.
-    async function foo() {
+    async function justCall() {
     try {
         waitAndMaybeReject();
     } catch (e) {
         return 'caught';
     }
     }
+
+    // awaiting
+    async function awaiting() {
+        try {
+          await waitAndMaybeReject();
+        } catch (e) {
+          return 'caught';
+        }
+    }
+      
