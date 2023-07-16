@@ -69,4 +69,17 @@ export const rejectPromise = async (throwIt: boolean): Promise<boolean> => {
           return 'caught';
         }
     }
+
+    // Here, if you call foo, the returned promise will always wait one second, then either fulfill with "yay", 
+    // or reject with Error('Boo!').
+    // By returning waitAndMaybeReject(), we're deferring to its result, so our catch block never runs.
+    async function returning() {
+        try {
+            return waitAndMaybeReject();
+        } catch (e) {
+            return 'caught';
+        }
+    }
+
+    
       
