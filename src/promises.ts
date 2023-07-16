@@ -36,3 +36,15 @@ export const rejectPromise = async (throwIt: boolean): Promise<boolean> => {
         }, 2000); // Simulating an asynchronous delay of 2 seconds
       });
 }
+
+// some code to demo await vs return vs return await
+// based on this article: https://jakearchibald.com/2017/await-vs-return-vs-return-await/
+async function waitAndMaybeReject() {
+    // Wait one second
+    await new Promise((r) => setTimeout(r, 1000));
+    // Toss a coin
+    const isHeads = Boolean(Math.round(Math.random()));
+  
+    if (isHeads) return 'yay';
+    throw Error('Boo!');
+  }
